@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Aprendizaje: Desafíos en Entornos Cambiantes (SENA)</title>
+    <!-- Tailwind CSS para diseño moderno y fluido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para accesibilidad visual -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enfoque de accesibilidad: Indicador de foco claro y de alto contraste */
+        :focus {
+            outline: 3px solid #f97316; /* Naranja SENA para foco */
+            outline-offset: 3px;
+        }
+
+        .progress-bar-fill {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+
+    <!-- Cabecera de Navegación y Progreso Global -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 p-4 shadow-sm" aria-label="Progreso y Estado de la Sesión">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-orange-600 p-2.5 rounded-xl text-white shadow-md shadow-orange-600/20" aria-hidden="true">
+                    <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold tracking-wider text-orange-600 uppercase">Formación SENA</span>
+                    <h1 class="font-bold text-lg text-slate-800 leading-tight">Adaptabilidad al Cambio</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 w-full sm:w-auto">
+                <!-- Barra de Progreso Accesible -->
+                <div class="flex-1 sm:w-48 bg-slate-200 rounded-full h-3.5 relative" aria-hidden="true">
+                    <div id="progressBar" class="progress-bar-fill bg-emerald-500 h-3.5 rounded-full w-0"></div>
+                </div>
+                <span class="text-xs font-bold text-slate-600 whitespace-nowrap min-w-[90px]" id="progressText">0% completado</span>
+            </div>
+
+            <!-- Panel de Gamificación Global -->
+            <div class="flex items-center gap-2 bg-amber-50 border border-amber-200 px-4 py-1.5 rounded-full text-sm font-semibold text-amber-800">
+                <i data-lucide="gem" class="w-4 h-4 text-amber-600"></i>
+                <span>Puntos: <span id="scoreDisplay" class="font-bold">0</span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Región para Mensajes de Estado Accesibles (WCAG 4.1.3) -->
+    <div id="screenReaderStatus" aria-live="polite" class="sr-only"></div>
+
+    <main class="max-w-4xl mx-auto p-4 md:p-8 flex-1 w-full">
+
+        <!-- MICRO 1: EL RETO Y EVALUACIÓN DIAGNÓSTICA -->
+        <section id="micro1" class="section-content fade-in space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-orange-600 to-amber-500 p-6 text-white">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-white/20 p-2 rounded-lg" aria-hidden="true">
+                            <i data-lucide="target" class="w-6 h-6"></i>
+                        </span>
+                        <div>
+                            <p class="text-xs font-semibold uppercase text-orange-100 tracking-wider">Momento 1: Ganar la atención</p>
+                            <h2 class="text-2xl font-bold">Micro 1: El Desafío de la Incertidumbre</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 md:p-8 space-y-6">
+                    <!-- Tarjeta del Desafío Real -->
+                    <div class="bg-amber-50/70 border-l-4 border-amber-500 p-5 rounded-r-xl" role="region" aria-label="Desafío de la era digital">
+                        <div class="flex gap-3">
+                            <i data-lucide="shield-alert" class="w-6 h-6 text-amber-600 shrink-0 mt-0.5"></i>
+                            <div>
+                                <h3 class="font-bold text-amber-900 text-lg">El Desafío del Aprendiz en la Cuarta Revolución</h3>
+                                <p class="text-amber-800 mt-1 text-sm leading-relaxed">
+                                    En la era de la Transformación Digital, el entorno se define bajo condiciones VICA (Volátil, Incierto, Complejo y Ambiguo). De acuerdo con el informe de prospectiva del SENA, el verdadero valor no reside únicamente en dominar una tecnología actual, sino en la velocidad para desaprender y reaprender hábitos ante cambios inminentes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Contextualizado -->
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-slate-800 flex items-center gap-2 text-base">
+                            <i data-lucide="video" class="text-orange-600"></i>
+                            Estudio de Caso: Trabajar sin Estrés (Kanban)
+                        </h3>
+                        <div class="aspect-video bg-black rounded-xl overflow-hidden shadow-inner relative">
+                            <video controls poster="https://placehold.co/800x450/0f172a/ffffff?text=Video:+Estudio+de+Caso+Kanban" class="w-full h-full object-cover">
+                                <source src="Video\YTDown_YouTube_Trabajar-sin-estres-Kanban_Media_I-H-WXAX_oM_001_480p.mp4" type="video/mp4">
+                                Su navegador no soporta la reproducción de videos locales.
+                            </video>
+                        </div>
+                        <p class="text-xs text-slate-500 italic text-center leading-relaxed">
+                            Analiza cómo una herramienta visual reduce drásticamente la incertidumbre cognitiva y permite el paso ordenado de la "Resistencia" a la "Exploración".
+                        </p>
+                    </div>
+
+                    <!-- Evaluación Diagnóstica Inicial (Sondeo Sin Puntaje - WCAG 2.5.3) -->
+                    <div class="bg-slate-100 p-6 rounded-xl border border-slate-200 space-y-4">
+                        <div class="flex items-center gap-2 text-slate-800">
+                            <i data-lucide="help-circle" class="text-orange-600 w-5 h-5"></i>
+                            <h4 class="font-bold text-sm uppercase tracking-wider">Sondeo de Saberes Previos (Sin Puntaje)</h4>
+                        </div>
+                        
+                        <!-- Etiqueta de Nombre Accesible explícita (Criterio 2.5.3) -->
+                        <fieldset class="space-y-3" aria-labelledby="diagnosticoPregunta">
+                            <legend id="diagnosticoPregunta" class="font-semibold text-slate-800 text-base mb-2">
+                                Cuando en tu centro de formación o área laboral te imponen una herramienta digital radicalmente nueva, ¿cuál suele ser tu primera reacción instintiva?
+                            </legend>
+
+                            <!-- Opción A -->
+                            <label class="flex items-start gap-3 p-3 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="priorKnowledge" value="reptiliano" class="mt-1 accent-orange-600" onclick="handleDiagnosticSelection('reptiliano')" aria-label="Opción A: Rechazo inicial o parálisis">
+                                <span class="text-sm text-slate-700"><strong>A) Rechazo o parálisis inmediata:</strong> Preferencia por quedarte en tus métodos conocidos porque "ya funcionan perfectamente".</span>
+                            </label>
+
+                            <!-- Opción B -->
+                            <label class="flex items-start gap-3 p-3 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="priorKnowledge" value="limbico" class="mt-1 accent-orange-600" onclick="handleDiagnosticSelection('limbico')" aria-label="Opción B: Estrés y agobio emocional">
+                                <span class="text-sm text-slate-700"><strong>B) Estrés emocional agudo:</strong> Sentimiento de frustración o agobio temporal debido al temor de cometer errores públicamente.</span>
+                            </label>
+
+                            <!-- Opción C -->
+                            <label class="flex items-start gap-3 p-3 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="priorKnowledge" value="cortical" class="mt-1 accent-orange-600" onclick="handleDiagnosticSelection('cortical')" aria-label="Opción C: Curiosidad y experimentación activa">
+                                <span class="text-sm text-slate-700"><strong>C) Curiosidad táctica:</strong> Intentar explorarla por tu cuenta para identificar qué oportunidades o beneficios inmediatos te ofrece.</span>
+                            </label>
+                        </fieldset>
+
+                        <!-- Mensaje de Feedback Neutral Diagnóstico -->
+                        <div id="diagnosticFeedback" class="hidden p-4 rounded-lg bg-orange-50 border border-orange-200 text-sm text-orange-900 flex items-start gap-3 fade-in" role="status" aria-live="polite">
+                            <i data-lucide="info" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5" aria-hidden="true"></i>
+                            <div id="diagnosticFeedbackText"></div>
+                        </div>
+                    </div>
+
+                    <!-- Botón de Transición de Bloque -->
+                    <button onclick="nextMicro(2)" id="btnToMicro2" class="w-full bg-slate-800 hover:bg-black text-white font-bold py-4 px-6 rounded-xl transition-all shadow-md flex justify-center items-center gap-2">
+                        <span>Iniciar Entrenamiento Teórico</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MICRO 2: CONTENIDO Y EVALUACIÓN FORMATIVA -->
+        <section id="micro2" class="section-content hidden fade-in space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-8 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-semibold text-emerald-600 uppercase tracking-widest">Momento 2: Informar y Presentar contenido</span>
+                    <h2 class="text-3xl font-bold text-slate-800">Micro 2: ADN Cognitivo del Cambio</h2>
+                </div>
+
+                <!-- Marco de Contenido Segmentado mediante Pestañas Flexibles -->
+                <div class="space-y-4">
+                    <p class="text-slate-600 text-sm">
+                        Para contrarrestar la inmutabilidad y rigidez mental (asociadas a la muerte según Lao Tse), debemos comprender que el cerebro humano se reprograma continuamente gracias a la <strong>neuroplasticidad</strong>. Selecciona las pestañas para explorar tu estructura de respuesta:
+                    </p>
+
+                    <!-- Pestañas de Navegación del Contenido Teórico -->
+                    <div class="flex border-b border-slate-200 overflow-x-auto gap-2" role="tablist">
+                        <button onclick="switchTab(event, 'contentTab1')" class="tab-btn px-4 py-2.5 font-bold text-sm text-orange-600 border-b-2 border-orange-600 whitespace-nowrap" role="tab" aria-selected="true" aria-controls="contentTab1">
+                            El Cerebro Triuno
+                        </button>
+                        <button onclick="switchTab(event, 'contentTab2')" class="tab-btn px-4 py-2.5 font-semibold text-sm text-slate-500 whitespace-nowrap" role="tab" aria-selected="false" aria-controls="contentTab2">
+                            Tipos de Cambio
+                        </button>
+                        <button onclick="switchTab(event, 'contentTab3')" class="tab-btn px-4 py-2.5 font-semibold text-sm text-slate-500 whitespace-nowrap" role="tab" aria-selected="false" aria-controls="contentTab3">
+                            Entrenamiento Cerebral
+                        </button>
+                    </div>
+
+                    <!-- Contenido de Pestaña 1 -->
+                    <div id="contentTab1" class="tab-content py-4 space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <h4 class="font-bold text-base text-slate-800">Las Tres Capas Cerebrales en Acción:</h4>
+                        <ul class="space-y-3">
+                            <li class="p-3 bg-red-50 rounded-lg border-l-4 border-red-500">
+                                <strong class="text-red-900">1. Cerebro Reptiliano (Primitivo):</strong> Es rígido, instintivo y prioriza la supervivencia física. No tolera el cambio ya que prefiere el confort, la predictibilidad y el control.
+                            </li>
+                            <li class="p-3 bg-indigo-50 rounded-lg border-l-4 border-indigo-500">
+                                <strong class="text-indigo-900">2. Cerebro Límbico:</strong> Sede de tus emociones y memorias asociativas de largo plazo. Evalúa si un estímulo es amenaza y moviliza la respuesta química de *Lucha-Huida*.
+                            </li>
+                            <li class="p-3 bg-emerald-50 rounded-lg border-l-4 border-emerald-500">
+                                <strong class="text-emerald-900">3. Cerebro Cortical (Neocórtex):</strong> Responsable del raciocinio abstracto, del pensamiento consciente y de la curiosidad. Es la capa que permite explorar alternativas innovadoras.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contenido de Pestaña 2 -->
+                    <div id="contentTab2" class="tab-content hidden py-4 space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <h4 class="font-bold text-base text-slate-800">Niveles de Adaptación y Alcance:</h4>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="p-4 bg-slate-100 rounded-xl border border-slate-200">
+                                <span class="text-xs font-bold text-slate-500 uppercase">Corto Plazo</span>
+                                <h5 class="font-bold text-slate-800 my-1">Cambio Remediativo</h5>
+                                <p class="text-xs text-slate-600">Acciones de "apagar incendios". Buscan aliviar o solucionar un dolor inmediato sin alterar las condiciones de fondo.</p>
+                            </div>
+                            <div class="p-4 bg-orange-50 rounded-xl border border-orange-200">
+                                <span class="text-xs font-bold text-orange-600 uppercase">Mediano Plazo</span>
+                                <h5 class="font-bold text-orange-800 my-1">Cambio Generativo</h5>
+                                <p class="text-xs text-orange-600">Creación intencional de nuevas capacidades, conductas y creencias de cara al futuro de manera programada.</p>
+                            </div>
+                            <div class="p-4 bg-purple-50 rounded-xl border border-purple-200">
+                                <span class="text-xs font-bold text-purple-600 uppercase">Largo Plazo / Identidad</span>
+                                <h5 class="font-bold text-purple-800 my-1">Cambio Evolutivo</h5>
+                                <p class="text-xs text-purple-600">Opera en el nivel de identidad (quiénes somos) y trascendencia. La Renovación Cultural de nuestra entidad es de este tipo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contenido de Pestaña 3 -->
+                    <div id="contentTab3" class="tab-content hidden py-4 space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <h4 class="font-bold text-base text-slate-800">Técnicas de Integración de Hemisferios:</h4>
+                        <p>
+                            Entrenar el cerebro para desaprender hábitos obsoletos requiere forzar la comunicación interhemisférica. Destacan los ejercicios físicos de Paul Dennison y técnicas PNL:
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <div class="p-3 bg-white rounded-xl border border-slate-200">
+                                <h5 class="font-semibold text-slate-800 flex items-center gap-1.5">
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-orange-500"></i> Doble Garabateo
+                                </h5>
+                                <p class="text-xs text-slate-500 mt-1">Dibujar con ambas manos a la vez. Estimula la motricidad fina y la lectoescritura coordinada.</p>
+                            </div>
+                            <div class="p-3 bg-white rounded-xl border border-slate-200">
+                                <h5 class="font-semibold text-slate-800 flex items-center gap-1.5">
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-orange-500"></i> Botones del Cerebro
+                                </h5>
+                                <p class="text-xs text-slate-500 mt-1">Estimula la circulación carotídea y reconecta la coordinación bilateral inmediata.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVALUACIÓN FORMATIVA DEL MICRO 2 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-6">
+                    <div class="border-b border-slate-200 pb-3 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-square" class="text-emerald-600 w-5 h-5"></i>
+                            <h3 class="font-bold text-slate-800 text-sm tracking-wider uppercase">Cuestionario de Evaluación Formativa</h3>
+                        </div>
+                        <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">3 Preguntas</span>
+                    </div>
+
+                    <div id="formativeQuizContainer" class="space-y-6">
+                        <!-- Pregunta 1 -->
+                        <div class="quiz-block bg-white p-5 rounded-xl border border-slate-100 shadow-sm space-y-3" id="qBlock_0">
+                            <h4 class="font-bold text-slate-800 text-sm" id="lbl_q0">Pregunta 1: Un instructor del SENA experimenta parálisis, rabia y rechazo ante la nueva plataforma virtual. Su cuerpo libera adrenalina impidiendo que piense con claridad analítica. ¿Qué mecanismo cerebral de supervivencia está dominando su comportamiento en ese instante?</h4>
+                            <div class="space-y-2" role="radiogroup" aria-labelledby="lbl_q0">
+                                <button onclick="checkFormative(0, 0, 'reptiliano', '¡Incorrecto! El cerebro reptiliano provoca rigidez instintiva, pero es el Limbico quien evalúa la amenaza emocional y activa la respuesta fisiológica de Lucha-Huida.')" class="opt-btn-0 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>A) Mecanismo Reptiliano de control estricto de entorno.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                                <button onclick="checkFormative(0, 1, 'limbico', '¡Excelente! El cerebro límbico (mamífero) conecta estímulos externos con recuerdos dolorosos o estresantes y gatilla las respuestas físicas de lucha y huida.')" class="opt-btn-0 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>B) Mecanismo Límbico que interpreta peligro emocional y activa Lucha-Huida.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                                <button onclick="checkFormative(0, 2, 'neocortex', '¡Incorrecto! El neocórtex o cerebro racional es el que facilita el pensamiento estratégico, la lógica y la curiosidad inteligente, no la lucha y huida.')" class="opt-btn-0 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>C) Capacidad Cortical que busca experimentar activamente alternativas.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                            </div>
+                            <!-- Explicación inmediata (inicialmente oculta) -->
+                            <div class="explanation-box hidden p-3 rounded-lg text-xs mt-2 fade-in"></div>
+                        </div>
+
+                        <!-- Pregunta 2 -->
+                        <div class="quiz-block bg-white p-5 rounded-xl border border-slate-100 shadow-sm space-y-3" id="qBlock_1">
+                            <h4 class="font-bold text-slate-800 text-sm" id="lbl_q1">Pregunta 2: El proceso de Renovación Cultural del SENA abarca elementos de identidad institucional, liderazgo, valores compartidos y de trascendencia. ¿A qué categoría pertenece según los tipos de cambio analizados en la teoría de Gregory Bateson?</h4>
+                            <div class="space-y-2" role="radiogroup" aria-labelledby="lbl_q1">
+                                <button onclick="checkFormative(1, 0, 'remediativo', '¡Incorrecto! El cambio remediativo se enfoca únicamente en solucionar un problema urgente a corto plazo (\'apagar incendios\').')" class="opt-btn-1 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>A) Cambio Remediativo o táctico puntual.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                                <button onclick="checkFormative(1, 1, 'generativo', '¡Incorrecto! El cambio generativo trabaja al nivel de capacidades y conductas específicas, pero el cambio evolutivo alcanza la identidad.')" class="opt-btn-1 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>B) Cambio Generativo orientado al desarrollo de nuevas habilidades de aprendizaje.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                                <button onclick="checkFormative(1, 2, 'evolutivo', '¡Excelente! La Renovación Cultural de nuestra institución es un Cambio Evolutivo ya que impacta la identidad (quiénes somos) y su efecto de trascendencia social.')" class="opt-btn-1 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>C) Cambio Evolutivo que opera a nivel de identidad corporativa y trascendencia social.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                            </div>
+                            <div class="explanation-box hidden p-3 rounded-lg text-xs mt-2 fade-in"></div>
+                        </div>
+
+                        <!-- Pregunta 3 -->
+                        <div class="quiz-block bg-white p-5 rounded-xl border border-slate-100 shadow-sm space-y-3" id="qBlock_2">
+                            <h4 class="font-bold text-slate-800 text-sm" id="lbl_q2">Pregunta 3: Para automatizar una nueva rutina de adaptabilidad laboral de forma que requiera menos esfuerzo consciente y energía de tu neocórtex, ¿sobre qué componente mental se debe fijar el hábito?</h4>
+                            <div class="space-y-2" role="radiogroup" aria-labelledby="lbl_q2">
+                                <button onclick="checkFormative(2, 0, 'consciente', '¡Incorrecto! La mente consciente es eminentemente lógica y creativa, pero gasta mucha energía. No almacena hábitos automáticos.')" class="opt-btn-2 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>A) Mente Consciente creativa orientada a la toma rápida de decisiones.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                                <button onclick="checkFormative(2, 1, 'subconsciente', '¡Excelente! Como explica Bruce Lipton, la mente subconsciente es una \'mente de hábitos\'. Permite automatizar comportamientos para ahorrar energía del neocórtex.')" class="opt-btn-2 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>B) Mente Subconsciente como repositorio de automatización de hábitos duraderos.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                                <button onclick="checkFormative(2, 2, 'espiritual', '¡Incorrecto! El nivel espiritual o trascendente influye sobre el propósito existencial y el beneficio comunitario, no en la automatización cotidiana.')" class="opt-btn-2 w-full text-left p-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs transition-colors flex justify-between items-center">
+                                    <span>C) Nivel Espiritual relacionado con la alineación del propósito de vida.</span>
+                                    <span class="status-icon shrink-0"></span>
+                                </button>
+                            </div>
+                            <div class="explanation-box hidden p-3 rounded-lg text-xs mt-2 fade-in"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pantalla Diferida de Resumen y Materiales Recomendados -->
+                    <div id="quizSummaryBlock" class="hidden bg-white p-6 rounded-xl border border-slate-200 space-y-4 shadow-sm fade-in">
+                        <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+                            <div class="bg-emerald-500 text-white p-1.5 rounded-lg">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-base">Evaluación Formativa Finalizada</h4>
+                        </div>
+                        
+                        <div id="quizSummaryFeedback" class="text-sm text-slate-700 leading-relaxed">
+                            <!-- Inyección dinámica de resultados y sugerencias personalizadas -->
+                        </div>
+
+                        <!-- Lista de Recomendaciones de Estudio del Glosario/Contenidos -->
+                        <div class="bg-amber-50/70 border border-amber-200 p-4 rounded-xl space-y-3">
+                            <h5 class="font-bold text-amber-900 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="book-open" class="w-4 h-4"></i> Recursos del Plan de Acción Sugeridos
+                            </h5>
+                            <ul id="suggestedResources" class="space-y-2 text-xs text-amber-900">
+                                <!-- Elementos dinámicos basados en fallas -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center gap-4 pt-4">
+                    <button onclick="nextMicro(1)" class="text-slate-500 font-bold hover:underline text-sm">Atrás</button>
+                    <button id="btnToMicro3" onclick="nextMicro(3)" disabled class="bg-slate-300 pointer-events-none text-slate-600 px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2">
+                        <span>Avanzar a la Aplicación</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MICRO 3: APLICACIÓN Y TOMA DE DECISIONES -->
+        <section id="micro3" class="section-content hidden fade-in space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-8 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-semibold text-purple-600 uppercase tracking-widest">Momento 3: Provocar desempeño y Proporcionar feedback</span>
+                    <h2 class="text-3xl font-bold text-slate-800">Micro 3: Simulador de Decisiones Críticas</h2>
+                </div>
+
+                <!-- Contextualización del Caso Real del Sector -->
+                <div class="p-5 bg-purple-50 rounded-2xl border border-purple-100 space-y-3">
+                    <h3 class="font-bold text-purple-900 flex items-center gap-2 text-base">
+                        <i data-lucide="landmark" class="w-5 h-5"></i>
+                        Caso de Estudio: La Transición Curricular de Carlos
+                    </h3>
+                    <p class="text-xs text-purple-900/90 leading-relaxed">
+                        Carlos es un experimentado instructor de gestión administrativa del SENA. El Centro de Servicios Financieros acaba de anunciar una migración obligatoria a un sistema de Inteligencia Artificial para la co-creación de materiales virtuales de formación. Carlos experimenta un agudo sentimiento de <strong>Frustración</strong> (bloqueo en su etapa de Resistencia emocional) impulsado por creencias limitantes como "siempre lo he diseñado de forma tradicional y da resultados correctos". El Subdirector de Centro le solicita diseñar un Plan de Acción inmediato para integrar el nuevo sistema ágil.
+                    </p>
+                </div>
+
+                <!-- Cuestionario de Decisiones Basadas en Escenarios -->
+                <div class="space-y-6">
+                    <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i data-lucide="compass" class="text-purple-600 w-5 h-5"></i>
+                        Decide el Rumbo de la Transición
+                    </h4>
+
+                    <!-- Escenario 1 -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4" id="scenarioBlock_0">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-purple-100 text-purple-800 font-bold text-xs px-2.5 py-1 rounded-full">Situación 1</span>
+                            <h5 class="font-bold text-slate-800 text-sm">¿Cómo debería Carlos reconfigurar su primer plan de acción para superar el estado instintivo de "Lucha-Huida"?</h5>
+                        </div>
+
+                        <div class="space-y-2.5">
+                            <!-- Decisión A -->
+                            <button onclick="chooseDecision(0, 0, 5, 'remediativa', 'Has seleccionado una salida Remediativa. Carlos delega la responsabilidad técnica y solo usa la IA para lo obligatorio sin alterar sus creencias ni desarrollar adaptabilidad cerebral. (+5 pts)')" class="sc-btn-0 w-full text-left p-4 bg-white rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-xs transition-colors flex justify-between items-start gap-3">
+                                <div class="space-y-1">
+                                    <p class="font-semibold text-slate-800">Opción A: Delegar la parte compleja del nuevo sistema a un instructor contratista joven.</p>
+                                    <p class="text-slate-500">Carlos cumple administrativamente pero esquiva el reto, evitando entrenar su propia neuroplasticidad.</p>
+                                </div>
+                                <span class="badge-pts font-bold text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0"></span>
+                            </button>
+
+                            <!-- Decisión B -->
+                            <button onclick="chooseDecision(0, 1, 25, 'evolutiva', '¡Excelente! Decisión de alcance Evolutivo. Carlos reconoce su propia autoconciencia y frena el sesgo reactivo utilizando ejercicios corporales para forzar la sinapsis del Neocórtex. (+25 pts)')" class="sc-btn-0 w-full text-left p-4 bg-white rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-xs transition-colors flex justify-between items-start gap-3">
+                                <div class="space-y-1">
+                                    <p class="font-semibold text-slate-800">Opción B: Detener la reacción impulsiva del límbico mediante respiración abdominal e iniciar entrenamientos cerebrales breves antes de interactuar con la IA.</p>
+                                    <p class="text-slate-500">Carlos adopta el reto con humildad, usa gimnasia hemisférica e impulsa conscientemente la autoconciencia para encontrar oportunidades.</p>
+                                </div>
+                                <span class="badge-pts font-bold text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0"></span>
+                            </button>
+                        </div>
+                        <div class="sc-feedback hidden p-3 rounded-lg text-xs mt-3 fade-in"></div>
+                    </div>
+
+                    <!-- Escenario 2 -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4" id="scenarioBlock_1">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-purple-100 text-purple-800 font-bold text-xs px-2.5 py-1 rounded-full">Situación 2</span>
+                            <h5 class="font-bold text-slate-800 text-sm">Para movilizar la adaptabilidad de sus compañeros de área curricular, ¿cuál intervención metodológica de Carlos ataca directamente el nivel de CREENCIAS e IDENTIDAD según los niveles de Bateson?</h5>
+                        </div>
+
+                        <div class="space-y-2.5">
+                            <!-- Decisión A -->
+                            <button onclick="chooseDecision(1, 0, 10, 'generativa', 'Has elegido una estrategia Generativa. Aunque mejora las capacidades de uso técnico de la IA mediante un manual estructurado, no cuestiona las creencias restrictivas de fondo que originan el miedo. (+10 pts)')" class="sc-btn-1 w-full text-left p-4 bg-white rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-xs transition-colors flex justify-between items-start gap-3">
+                                <div class="space-y-1">
+                                    <p class="font-semibold text-slate-800">Opción A: Diseñar una guía técnica obligatoria en PDF con instrucciones precisas para la IA.</p>
+                                    <p class="text-slate-500">Se focaliza en el nivel de capacidades técnicas de forma racional y estricta, pero ignora el pánico emocional.</p>
+                                </div>
+                                <span class="badge-pts font-bold text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0"></span>
+                            </button>
+
+                            <!-- Decisión B -->
+                            <button onclick="chooseDecision(1, 1, 25, 'evolutiva', '¡Excelente! Enfoque de Cambio Evolutivo. Al debatir abiertamente las barreras subjetivas y co-crear un abecedario de estimulación hemisférica, Carlos empodera la identidad del equipo como agentes activos de cambio. (+25 pts)')" class="sc-btn-1 w-full text-left p-4 bg-white rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-xs transition-colors flex justify-between items-start gap-3">
+                                <div class="space-y-1">
+                                    <p class="font-semibold text-slate-800">Opción B: Organizar un círculo de co-creación para cuestionar los temores de automatización laboral y entrenar la flexibilidad cognitiva grupalmente.</p>
+                                    <p class="text-slate-500">Aborda y deconstruye la creencia limitante individual y redefine la identidad colectiva como instructores innovadores.</p>
+                                </div>
+                                <span class="badge-pts font-bold text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0"></span>
+                            </button>
+                        </div>
+                        <div class="sc-feedback hidden p-3 rounded-lg text-xs mt-3 fade-in"></div>
+                    </div>
+                </div>
+
+                <!-- Botón de Transición Final al Cierre/Insignia -->
+                <button onclick="completeAllExperience()" id="btnFinishExperience" disabled class="w-full bg-slate-300 pointer-events-none text-slate-600 font-bold py-4 px-6 rounded-xl transition-all flex justify-center items-center gap-2 shadow-md">
+                    <span>Generar Certificación y Reconocimiento</span>
+                    <i data-lucide="award" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal de Reconocimiento de Competencia Técnica -->
+    <div id="badgeModal" class="fixed inset-0 bg-slate-900/80 hidden flex items-center justify-center z-[100] p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border border-slate-100 fade-in">
+            <div class="w-28 h-28 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-5 border-4 border-amber-400 shadow-md shadow-amber-400/20" aria-hidden="true">
+                <i data-lucide="medal" class="w-14 h-14 text-amber-500"></i>
+            </div>
+            
+            <span class="text-[10px] font-bold tracking-wider text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full uppercase" id="modalPerformance">Nivel Sobresaliente</span>
+            
+            <h3 id="modalTitle" class="text-2xl font-bold text-slate-800 mt-4">¡Competencia Acreditada!</h3>
+            <p class="text-xs text-slate-500 mt-2 mb-6 leading-relaxed">
+                Has demostrado comprender integralmente los mecanismos de adaptabilidad mental, deconstrucción de barreras cognitivas y planeación estratégica para entornos cambiantes en el SENA.
+            </p>
+            
+            <div class="bg-orange-50 text-orange-800 font-bold p-3 rounded-lg text-xs border border-orange-200 mb-6">
+                Insignia: Agente de Adaptabilidad SENA
+            </div>
+            
+            <button onclick="resetTraining()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-xl font-bold text-sm transition-all shadow-md shadow-orange-600/10">
+                Iniciar Nuevo Ciclo de Aprendizaje
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- Estado Global ---
+        let currentStep = 1;
+        let score = 0;
+        
+        // Estado Evaluación Diagnóstica (Micro 1)
+        let diagnosticSelected = false;
+
+        // Estado Evaluación Formativa (Micro 2)
+        const totalFormativeQuestions = 3;
+        let answeredFormative = Array(totalFormativeQuestions).fill(false);
+        let formativeResults = Array(totalFormativeQuestions).fill(null); // true/false
+
+        // Estado Toma de Decisiones (Micro 3)
+        const totalDecisionScenarios = 2;
+        let answeredDecisions = Array(totalDecisionScenarios).fill(false);
+
+        // --- Inicialización ---
+        window.onload = () => {
+            lucide.createIcons();
+            updateProgress();
+            announceScreenReader("Bienvenido a la Guía Interactiva del SENA para entornos cambiantes. Por favor, inicia con el Micro 1.");
+        };
+
+        // --- Navegación SPA ---
+        function nextMicro(num) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`micro${num}`).classList.remove('hidden');
+            
+            // Pausar video de forma automática al salir del Micro 1
+            const video = document.querySelector('video');
+            if (video && num !== 1) {
+                video.pause();
+            }
+
+            currentStep = num;
+            updateProgress();
+            window.scrollTo(0,0);
+            
+            // Anuncio para lectores de pantalla
+            announceScreenReader(`Has ingresado al Micro ${num}.`);
+        }
+
+        // --- Lógica de Pestañas Interactivas (Micro 2) ---
+        function switchTab(e, tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(t => t.classList.add('hidden'));
+            btns.forEach(b => {
+                b.classList.remove('text-orange-600', 'border-b-2', 'border-orange-600');
+                b.classList.add('text-slate-500');
+                b.setAttribute('aria-selected', 'false');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            e.currentTarget.classList.add('text-orange-600', 'border-b-2', 'border-orange-600');
+            e.currentTarget.classList.remove('text-slate-500');
+            e.currentTarget.setAttribute('aria-selected', 'true');
+            
+            announceScreenReader(`Mostrando contenido de la pestaña ${e.currentTarget.innerText}.`);
+        }
+
+        // --- Lógica de la Evaluación Diagnóstica Inicial (Micro 1) ---
+        function handleDiagnosticSelection(choiceValue) {
+            if (diagnosticSelected) return;
+
+            const feedbackCard = document.getElementById('diagnosticFeedback');
+            const feedbackText = document.getElementById('diagnosticFeedbackText');
+            
+            feedbackCard.classList.remove('hidden');
+
+            let customMsg = "";
+            if (choiceValue === 'reptiliano') {
+                customMsg = "<strong>Sondeo Finalizado:</strong> Tu respuesta denota la activación instintiva de tu cerebro Reptiliano. Este busca preservar tu energía bloqueando variaciones en tu zona de seguridad. Esto es natural; en el Micro 2 aprenderemos a canalizar este mecanismo instintivo.";
+            } else if (choiceValue === 'limbico') {
+                customMsg = "<strong>Sondeo Finalizado:</strong> Identificas una respuesta de origen Límbico, donde las emociones de frustración y el agobio toman precedencia de corto plazo. Reconocer esto es la base de la autoconciencia para gestionar el estrés.";
+            } else if (choiceValue === 'cortical') {
+                customMsg = "<strong>Sondeo Finalizado:</strong> Demuestras un pre-entrenamiento de tu cerebro Cortical, el cual de manera analítica busca la experimentación y el raciocinio por sobre la parálisis emocional. ¡Felicidades!";
+            }
+
+            feedbackText.innerHTML = customMsg;
+            diagnosticSelected = true;
+
+            // Bloquear selectores de radio
+            document.querySelectorAll('input[name="priorKnowledge"]').forEach(input => {
+                input.disabled = true;
+            });
+
+            // Anunciar de manera auditiva sin romper el flujo visual
+            announceScreenReader("Respuesta de sondeo procesada correctamente. Continuemos al Micro 2.");
+        }
+
+        // --- Lógica de la Evaluación Formativa (Micro 2) ---
+        function checkFormative(questionIdx, optionIdx, value, explanation) {
+            // Validar si la pregunta ya fue contestada
+            if (answeredFormative[questionIdx]) return;
+
+            answeredFormative[questionIdx] = true;
+            
+            // Marcar resultado
+            const isCorrect = (
+                (questionIdx === 0 && value === 'limbico') ||
+                (questionIdx === 1 && value === 'evolutivo') ||
+                (questionIdx === 2 && value === 'subconsciente')
+            );
+
+            formativeResults[questionIdx] = isCorrect;
+
+            // Actualizar botones de opciones visualmente
+            const btns = document.querySelectorAll(`.opt-btn-${questionIdx}`);
+            btns.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === optionIdx) {
+                    if (isCorrect) {
+                        btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900');
+                        btn.querySelector('.status-icon').innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>';
+                        score += 10;
+                    } else {
+                        btn.classList.add('bg-red-50', 'border-red-500', 'text-red-900');
+                        btn.querySelector('.status-icon').innerHTML = '<i data-lucide="x-circle" class="w-4 h-4 text-red-600"></i>';
+                    }
+                } else {
+                    btn.classList.add('opacity-55');
+                }
+            });
+
+            // Mostrar caja de explicación inmediata
+            const expBox = document.querySelector(`#qBlock_${questionIdx} .explanation-box`);
+            expBox.classList.remove('hidden');
+            if (isCorrect) {
+                expBox.classList.add('bg-emerald-50', 'text-emerald-800', 'border', 'border-emerald-200');
+                expBox.innerHTML = `<strong>Respuesta Correcta:</strong> ${explanation}`;
+            } else {
+                expBox.classList.add('bg-red-50', 'text-red-800', 'border', 'border-red-200');
+                expBox.innerHTML = `<strong>Aclaración formativa:</strong> ${explanation}`;
+            }
+
+            // Actualizar UI General
+            updateUI();
+            
+            // Avisar al lector de pantalla
+            announceScreenReader(isCorrect ? "Respuesta correcta. Sumas 10 puntos." : "Respuesta incorrecta. Revisa la aclaración en la pantalla.");
+
+            // Validar si finalizó el bloque del Micro 2
+            checkFormativeCompletion();
+        }
+
+        function checkFormativeCompletion() {
+            const allAnswered = answeredFormative.every(state => state === true);
+            if (!allAnswered) return;
+
+            // Habilitar botón de navegación al Micro 3
+            const nextBtn = document.getElementById('btnToMicro3');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('bg-slate-300', 'text-slate-600', 'pointer-events-none');
+            nextBtn.classList.add('bg-orange-600', 'text-white', 'hover:bg-orange-700', 'shadow-md');
+
+            // Renderizar la pantalla de resumen diferida
+            renderFormativeSummary();
+        }
+
+        function renderFormativeSummary() {
+            const summaryBlock = document.getElementById('quizSummaryBlock');
+            const summaryFeedback = document.getElementById('quizSummaryFeedback');
+            const suggestedResources = document.getElementById('suggestedResources');
+
+            summaryBlock.classList.remove('hidden');
+            suggestedResources.innerHTML = ""; // Limpiar antes de poblar
+
+            let correctCount = formativeResults.filter(r => r === true).length;
+            let feedbackHTML = "";
+            let resourcesHTML = "";
+
+            if (correctCount === 3) {
+                feedbackHTML = `
+                    <p class="font-bold text-slate-800 text-sm mb-1">¡Sobresaliente! Has acertado 3 de 3 preguntas en tu evaluación formativa.</p>
+                    <p class="text-xs text-slate-600">Has comprendido con gran destreza la diferenciación anatómica del comportamiento (Cerebro Límbico vs Reptiliano), el alcance integrador del Cambio Evolutivo para la Renovación Cultural del SENA, y la trascendencia de la mente subconsciente en el afianzamiento de hábitos corporales y de aprendizaje.</p>
+                `;
+            } else {
+                feedbackHTML = `
+                    <p class="font-bold text-slate-800 text-sm mb-1">Evaluación completada. Lograste un acierto de ${correctCount} sobre 3 posibles.</p>
+                    <p class="text-xs text-slate-600">A continuación, se han listado de forma automática aquellos conceptos específicos del material técnico que mostraron debilidad en tu evaluación, para que los repases brevemente antes de tomar decisiones estratégicas reales en el Micro 3.</p>
+                `;
+            }
+
+            // Poblar recursos sugeridos basados en errores (Diferido)
+            if (!formativeResults[0]) {
+                resourcesHTML += `
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                        <span>Revisar la sección 1.1.1 (Cerebro Límbico y Mecanismo Lucha-Huida) de la guía técnica.</span>
+                    </li>
+                `;
+            }
+            if (!formativeResults[1]) {
+                resourcesHTML += `
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                        <span>Estudiar la diferenciación del Cambio Evolutivo en la sección 1.1.2 de la guía técnica del SENA.</span>
+                    </li>
+                `;
+            }
+            if (!formativeResults[2]) {
+                resourcesHTML += `
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                        <span>Consultar la teoría de la Mente de Hábito de Bruce Lipton en la sección 1.1 de la guía.</span>
+                    </li>
+                `;
+            }
+
+            // Si aprobó todo
+            if (correctCount === 3) {
+                resourcesHTML += `
+                    <li class="flex items-center gap-2 text-emerald-800">
+                        <i data-lucide="award" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                        <span>Dominio pleno de conceptos del Micro 2. Se sugiere profundizar en Gimnasia Cerebral de John Grinder.</span>
+                    </li>
+                `;
+            }
+
+            summaryFeedback.innerHTML = feedbackHTML;
+            suggestedResources.innerHTML = resourcesHTML;
+            
+            lucide.createIcons();
+
+            // Mensaje de estado de accesibilidad diferido (Criterio 4.1.3)
+            announceScreenReader(`Evaluación formativa finalizada. Has acertado ${correctCount} preguntas de 3. Revisa la pantalla para ver tus sugerencias del plan de acción.`);
+        }
+
+        // --- Lógica del Simulador de Decisiones (Micro 3) ---
+        function chooseDecision(scenarioIdx, choiceIdx, points, type, explanation) {
+            if (answeredDecisions[scenarioIdx]) return;
+
+            answeredDecisions[scenarioIdx] = true;
+
+            // Sumar puntaje global
+            score += points;
+
+            // Mostrar feedback de la decisión
+            const blockFeedback = document.querySelector(`#scenarioBlock_${scenarioIdx} .sc-feedback`);
+            blockFeedback.classList.remove('hidden');
+
+            const btns = document.querySelectorAll(`.sc-btn-${scenarioIdx}`);
+            btns.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === choiceIdx) {
+                    btn.classList.add('border-purple-500', 'bg-purple-50');
+                    btn.querySelector('.badge-pts').innerText = `+${points} pts`;
+                    btn.querySelector('.badge-pts').classList.add('bg-purple-600', 'text-white');
+                } else {
+                    btn.classList.add('opacity-50');
+                }
+            });
+
+            // Establecer color y texto del feedback
+            if (type === 'evolutiva') {
+                blockFeedback.classList.add('bg-purple-50', 'text-purple-900', 'border', 'border-purple-200');
+            } else if (type === 'generativa') {
+                blockFeedback.classList.add('bg-blue-50', 'text-blue-900', 'border', 'border-blue-200');
+            } else {
+                blockFeedback.classList.add('bg-slate-100', 'text-slate-800', 'border', 'border-slate-300');
+            }
+            blockFeedback.innerHTML = explanation;
+
+            updateUI();
+
+            // Avisar por lector de pantalla
+            announceScreenReader(`Decisión tomada. Recibes ${points} puntos.`);
+
+            // Validar si el simulador ha finalizado por completo
+            checkDecisionCompletion();
+        }
+
+        function checkDecisionCompletion() {
+            const allDecided = answeredDecisions.every(state => state === true);
+            if (!allDecided) return;
+
+            // Habilitar botón de finalización e insignia
+            const finishBtn = document.getElementById('btnFinishExperience');
+            finishBtn.disabled = false;
+            finishBtn.classList.remove('bg-slate-300', 'text-slate-600', 'pointer-events-none');
+            finishBtn.classList.add('bg-purple-600', 'text-white', 'hover:bg-purple-700');
+            
+            announceScreenReader("Has completado de forma satisfactoria todos los escenarios críticos. Presiona el botón para finalizar el entrenamiento.");
+        }
+
+        function completeAllExperience() {
+            // Mostrar modal de insignia
+            const modal = document.getElementById('badgeModal');
+            const perfBadge = document.getElementById('modalPerformance');
+            
+            modal.classList.remove('hidden');
+
+            // Categorizar desempeño final del aprendiz
+            if (score >= 90) {
+                perfBadge.innerText = "Nivel Excelencia / Experto";
+                perfBadge.classList.remove('bg-emerald-100', 'text-emerald-800');
+                perfBadge.classList.add('bg-amber-100', 'text-amber-800');
+            } else if (score >= 60) {
+                perfBadge.innerText = "Nivel Satisfactorio / Profesional";
+                perfBadge.classList.remove('bg-emerald-100', 'text-emerald-800');
+                perfBadge.classList.add('bg-blue-100', 'text-blue-800');
+            } else {
+                perfBadge.innerText = "Nivel Básico / En Crecimiento";
+                perfBadge.classList.remove('bg-emerald-100', 'text-emerald-800');
+                perfBadge.classList.add('bg-slate-100', 'text-slate-800');
+            }
+
+            announceScreenReader("¡Felicitaciones! Has culminado tu entrenamiento en adaptabilidad laboral. Tu insignia digital ha sido asignada.");
+        }
+
+        // --- Utilidades de Interfaz ---
+        function updateProgress() {
+            const progress = ((currentStep - 1) / 3) * 100;
+            const bar = document.getElementById('progressBar');
+            const txt = document.getElementById('progressText');
+            bar.style.width = `${progress}%`;
+            txt.innerText = `${Math.round(progress)}% completado`;
+        }
+
+        function updateUI() {
+            document.getElementById('scoreDisplay').innerText = score;
+            lucide.createIcons();
+        }
+
+        // --- Criterio WCAG 4.1.3: Anuncios Dinámicos de Lectura ---
+        function announceScreenReader(message) {
+            const container = document.getElementById('screenReaderStatus');
+            container.innerText = "";
+            setTimeout(() => {
+                container.innerText = message;
+            }, 50);
+        }
+
+        // --- Reiniciar Experiencia ---
+        function resetTraining() {
+            location.reload();
+        }
+
+    </script>
+</body>
+</html>
